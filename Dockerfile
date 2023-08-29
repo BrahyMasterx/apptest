@@ -29,6 +29,7 @@ install -m 755 /tmp/xray/xray /app && \
 rm -rf /tmp/xray
 
 COPY configure.sh /configure.sh
+COPY config.json /config.json
 RUN chmod +x /configure.sh
 CMD bash /configure.sh
 USER 10014
