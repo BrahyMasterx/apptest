@@ -2,11 +2,7 @@ FROM alpine:latest
 EXPOSE 8080
 WORKDIR /app
 COPY . /app
-ENV WEB_USERNAME=admin
-ENV WEB_PASSWORD=admin*2023*
-ENV ARGO_AUTH=eyJhIjoiYWQ1NDUwYTgyNTI0M2VhZTE5Y2E0ODI4MWQxNTRiZjIiLCJ0IjoiYTQ4ZTY4YTktN2ZhNS00MDY2LThlNDYtOTdmMDhkMjBlNDEyIiwicyI6Ik5qa3hZakJtWmprdE56Qm1NaTAwT1RGbExXRXhaRFl0T1dJME5EUXlPV0k1TnpNeiJ9
-ENV UUID=0e059fce-d6c8-4cc2-9e11-9efff358f8b9
-ENV PORT=8080
+
 RUN apk add --no-cache shadow \
     && groupadd sudo \
     && useradd -m choreouser -u 10014 \
@@ -15,13 +11,6 @@ RUN apk add --no-cache shadow \
 
 RUN chown -R choreouser:choreouser / 2>/dev/null || true
 
-RUN apk add --no-cache --virtual .build-deps ca-certificates curl unzip wget bash shadow
-RUN wget https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64
-RUN mv cloudflared-linux-amd64 cloudflared
-RUN chmod +x cloudflared
-RUN wget https://github.com/tsl0922/ttyd/releases/latest/download/ttyd.x86_64
-RUN mv ttyd.x86_64 ttyd
-RUN chmod +x ttyd
 RUN mkdir /tmp/xray && \
 curl -L -H "Cache-Control: no-cache" -o /tmp/xray/xray.zip https://github.com/XTLS/Xray-core/releases/latest/download/Xray-linux-64.zip && \
 unzip /tmp/xray/xray.zip -d /tmp/xray && \
