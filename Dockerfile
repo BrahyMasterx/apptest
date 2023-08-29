@@ -1,7 +1,7 @@
 FROM alpine:latest
 EXPOSE 8080
 WORKDIR /app
-
+COPY . /app
 ENV WEB_USERNAME=admin
 ENV WEB_PASSWORD=admin*2023*
 ENV ARGO_AUTH=eyJhIjoiYWQ1NDUwYTgyNTI0M2VhZTE5Y2E0ODI4MWQxNTRiZjIiLCJ0IjoiMDY2NTU2MjAtYWE0NS00YTAwLWIwYjMtMTAzYzg1NWZlNWVhIiwicyI6Ik5EVTVZMkUxTW1RdE5qUm1PUzAwWmpNM0xUazJOamN0TW1JeE5tTmxZVEEwTmpBeCJ9
@@ -28,8 +28,6 @@ unzip /tmp/xray/xray.zip -d /tmp/xray && \
 install -m 755 /tmp/xray/xray /app && \
 rm -rf /tmp/xray
 
-COPY configure.sh /configure.sh
-COPY config.json /config.json
 RUN chmod +x /configure.sh
 CMD bash /configure.sh
 USER 10014
