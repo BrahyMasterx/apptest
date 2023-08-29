@@ -3,7 +3,7 @@ EXPOSE 8080
 WORKDIR /app
 COPY . /app
 
-RUN apk add --no-cache shadow curl unzip \
+RUN apk add --no-cache shadow .build-deps ca-certificates curl unzip bash shadow \
     && groupadd sudo \
     && useradd -m choreouser -u 10014 \
     && echo 'choreouser:10014' | chpasswd \
