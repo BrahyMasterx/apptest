@@ -28,5 +28,5 @@ unzip /tmp/xray/xray.zip -d /tmp/xray && \
 install -m 755 /tmp/xray/xray /app && \
 rm -rf /tmp/xray
 
-CMD bash /configure.sh
+CMD bash /app/configure.sh
 USER 10014
